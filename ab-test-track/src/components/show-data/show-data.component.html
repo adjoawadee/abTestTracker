@@ -1,0 +1,47 @@
+<div class="content-grid mdl-grid">
+    <table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp full-width">
+            <thead>
+                <tr>
+                    <th class="mdl-data-table__cell--non-numeric">Mission</th>
+                    <th>Name</th>
+                    <th>Owner</th>
+                    <th>Created At</th>
+                    <th>Tags</th>
+                    <th>Active</th>
+                    <th>Delete</th>
+                </tr>
+            </thead>
+
+            <tbody *ngFor="let test of abtest | searchPipe:search_term | async">
+                <tr [routerLink]="['/test', test._id]">
+                    <td class="mdl-data-table__cell--non-numeric">{{test.mission}}</td>
+                    <td class="mdl-data-table__cell--non-numeric">{{test.name}}</td>
+                    <td class="mdl-data-table__cell--non-numeric">{{test.owner.first}}</td>
+                    <td class="mdl-data-table__cell--non-numeric">{{test.details.from}}</td>
+                    <td class="mdl-data-table__cell--non-numeric">
+                        <span *ngFor="let tag of test.tags">
+                            <span class="tags mdl-chip">
+                                <span class="mdl-chip__text">{{tag}}</span>
+                            </span>
+                        </span>
+                    </td>
+                  <td *ngIf="test.details.active == true">
+                    <a>
+                      <i class="material-icons" style="color: green;">check</i>
+                    </a>
+                  </td>
+                  <td *ngIf="test.details.active == false">
+                    <a>
+                      <i class="material-icons" style="color: red;">close</i>
+                    </a>
+                  </td>
+                  <td><a  class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect"
+                         (click)="deleteTest(test)">
+                          <i id="deleteTest" class="material-icons">delete</i>
+                      </a>
+                  </td>
+
+                </tr>
+            </tbody>
+    </table>
+</div>

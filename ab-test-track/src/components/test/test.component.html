@@ -1,0 +1,19 @@
+<div class="content-grid mdl-grid mdl-card mdl-shadow--2dp">
+  <div class="mdl-card__title">
+  </div>
+  <div class="mdl-card__menu">
+    <button id="editButton" [routerLink]="['edit']" class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect">
+      <i class="material-icons">edit</i>
+    </button>
+    <div class="mdl-tooltip" data-mdl-for="editButton">
+      Edit <strong>test</strong>
+    </div>
+    <button id="testDetails" [routerLink]="['details']" class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect">
+      <i class="material-icons">book-open-variant</i>
+    </button>
+    <div class="mdl-tooltip" data-mdl-for="testDetails">
+      See <strong>details</strong>
+    </div>
+  </div>
+  <router-outlet></router-outlet>
+</div>

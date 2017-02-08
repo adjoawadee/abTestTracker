@@ -1,0 +1,25 @@
+$color: rgb(255, 255, 255);
+.mdl-layout-title{
+  z-index: 10;
+  a{
+    text-decoration: none;
+    text-underline: none;
+    color: #ffffff;
+  }
+}
+.nav-bar{
+    height: 100px;
+
+  .mdl-navigation{
+    text-align: center;
+    margin: 0 auto;
+  }
+}
+
+.add-btn{
+    position: absolute;
+    top: 10%;
+    left: 5%;
+    z-index: 4;
+    background: $color;
+}

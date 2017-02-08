@@ -1,0 +1,174 @@
+<div class="mdl-card mdl-shadow--2dp">
+    <div class="mdl-card__title">
+      <h2 class="mdl-card__title-text">Add a new Test</h2>
+    </div>
+
+    <div class="mdl-card__actions mdl-card--border">
+      <div class="mdl-grid">
+        <form [formGroup]="abTestForm" (ngSubmit)="onSubmit(abTestForm)" >
+          <!--Test-->
+          <div class="mdl-textfield mdl-js-textfield">Test</div>
+          <div class="mdl-textfield mdl-js-textfield">
+            <label for="name"
+                   class="mdl-textfield__label">Name</label>
+            <input type="text"
+                   class="mdl-textfield__input"
+                   formControlName = "name"
+                   id="name"
+                   name="name">
+          </div>
+          <div class="mdl-textfield mdl-js-textfield">
+            <label for="mission"
+                   class="mdl-textfield__label">Mission</label>
+            <input type="text"
+                   class="mdl-textfield__input"
+                   formControlName="mission"
+                   name="mission"
+                   id="mission">
+          </div>
+
+          <!--Owner-->
+          <div class="mdl-textfield mdl-js-textfield">Owner</div>
+          <div formGroupName="owner">
+            <div class="mdl-textfield mdl-js-textfield">
+            <label for="first"
+                   class="mdl-textfield__label">First Name</label>
+            <input type="text"
+                   class="mdl-textfield__input"
+                   formControlName="first"
+                   name="first"
+                   id="first">
+            </div>
+            <div class="mdl-textfield mdl-js-textfield">
+              <label for="last"
+                     class="mdl-textfield__label">Last Name</label>
+              <input type="text"
+                     class="mdl-textfield__input"
+                     formControlName="last"
+                     name="last"
+                     id="last">
+            </div>
+          </div>
+
+          <!--Details-->
+          <div class="mdl-textfield mdl-js-textfield">Date</div>
+          <div formGroupName="details">
+            <div class="mdl-textfield mdl-js-textfield">
+              <label for="from"
+                     class="mdl-textfield__label date">Start Date</label>
+              <input type="date"
+                     class="mdl-textfield__input"
+                     formControlName="from"
+                     name="from"
+                     id="from">
+            </div>
+            <div class="mdl-textfield mdl-js-textfield">
+              <label for="to"
+                     class="mdl-textfield__label date">End Date</label>
+              <input type="text"
+                     onfocus="(this.type='date')" onblur="if(!this.value)this.type='text'"
+                     class="mdl-textfield__input"
+                     formControlName="to"
+                     name="to"
+                     id="to">
+
+            </div>
+          </div>
+
+         <!--Description-->
+          <div class="mdl-textfield mdl-js-textfield">Description</div>
+          <div formGroupName="description">
+            <div class="mdl-textfield mdl-js-textfield">
+              <label for="short"
+                     class="mdl-textfield__label">Short description</label>
+              <input type="text"
+                     class="mdl-textfield__input"
+                     formControlName="short"
+                     name="short"
+                     id="short">
+            </div>
+            <div class="mdl-textfield mdl-js-textfield">
+              <label for="long"
+                     class="mdl-textfield__label">Long description</label>
+              <input type="text"
+                     class="mdl-textfield__input"
+                     formControlName="long"
+                     name="long"
+                     id="long">
+            </div>
+          </div>
+
+          <!--Snapshots-->
+          <div class="mdl-textfield mdl-js-textfield">Snapshots</div>
+          <div formArrayName ="snapshots">
+            <div *ngFor="let snapshot of abTestForm.controls['snapshots'].controls; let i=index">
+              <p>Snapshot {{i+1}}</p>
+                <div formGroupName = "{{i}}">
+                    <div class="mdl-textfield mdl-js-textfield">
+                      <label for="snapshot_description"
+                             class="mdl-textfield__label">Description</label>
+                      <input type="snapshot_description"
+                             class="mdl-textfield__input"
+                             formControlName ="snapshot_description"
+                             name="snapshot_description"
+                             id="snapshot_description">
+                    </div>
+                    <div class="mdl-textfield mdl-js-textfield">
+                      <label for="snapshot_title"
+                             class="mdl-textfield__label">Title</label>
+                      <input type="text"
+                             class="mdl-textfield__input"
+                             formControlName ="snapshot_title"
+                             name="snapshot_title"
+                             id="snapshot_title">
+                    </div>
+
+                    <div class="mdl-textfield mdl-js-textfield">
+                      <label for="snapshot_url"
+                             class="mdl-textfield__label">URL</label>
+                      <input type="text"
+                             class="mdl-textfield__input"
+                             formControlName ="snapshot_url"
+                             name="snapshot_url"
+                             id="snapshot_url">
+                    </div>
+                  </div>
+            </div>
+            <a class="extra"(click)="addSnapshots()" style="cursor: default">Add snapshot +</a>
+          </div>
+
+
+          <!--Tags-->
+          <div class="mdl-textfield mdl-js-textfield">Tags</div>
+          <div formArrayName="tags">
+            <div *ngFor="let tag of abTestForm.controls['tags'].controls; let i=index">
+              <p>Tag {{i+1}}</p>
+              <!--<button *ngIf="abTestForm.controls.snapshots.controls.length > 1" (click)="removeSnapshot(i)"></button>-->
+              <div class="mdl-textfield mdl-js-textfield">
+              <label for="tag"
+                     class="mdl-textfield__label">Tag</label>
+              <input type="text"
+                     class="mdl-textfield__input"
+                     formControlName="{{i}}"
+                     name="tag"
+                     id="tag">
+            </div>
+            </div>
+            <a class="extra" (click)="addTags()" style="cursor: default">Add Tag +</a>
+          </div>
+          <button id="saveBtn"
+                  type="submit"
+                  class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">Add
+          </button>
+
+        </form>
+      </div>
+
+    </div>
+    <div class="mdl-card__actions mdl-card--border">
+      <a [routerLink]="['/home']" class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
+        Home
+      </a>
+    </div>
+
+</div>

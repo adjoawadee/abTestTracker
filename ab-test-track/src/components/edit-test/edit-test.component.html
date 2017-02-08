@@ -1,0 +1,152 @@
+<h3>Edit Test</h3>
+<div class="mdl-grid" *ngIf="testDetails">
+  <div class="mdl-cell mdl-cell--12-col">
+    <form [formGroup]="editTestForm" (ngSubmit)="onSave(editTestForm)">
+      <!--Test-->
+      <div class="mdl-card__title-text">
+        <div class="mdl-textfield mdl-js-textfield">
+          <label class="mdl-textfield__label">Name</label>
+          <input type="text"
+                 class="mdl-textfield__input"
+                 formControlName="name"
+                 id="name"
+                 name="name"
+                 placeholder={{testDetails.name}}
+                 [(ngModel)]=testDetails.name>
+        </div>
+        <div class="mdl-textfield mdl-js-textfield">
+          <label class="mdl-textfield__label">Mission</label>
+          <input type="text"
+                 class="mdl-textfield__input"
+                 formControlName="mission"
+                 id="mission"
+                 name="mission"
+                 placeholder={{testDetails.mission}}
+                 [(ngModel)]=testDetails.mission>
+        </div>
+      </div>
+
+      <!--Owner-->
+      <div class="mdl-textfield mdl-js-textfield"><h5>Owner</h5></div>
+      <div formGroupName="owner" class="mdl-card__title-text">
+        <div class="mdl-textfield mdl-js-textfield">
+          <label class="mdl-textfield__label">First Name</label>
+          <input type="text"
+                 class="mdl-textfield__input"
+                 formControlName="first"
+                 id="first"
+                 name="first"
+                 placeholder={{testDetails.owner.first}}
+                 [(ngModel)]=testDetails.owner.first>
+        </div>
+        <div class="mdl-textfield mdl-js-textfield">
+          <label class="mdl-textfield__label">Last Name</label>
+          <input type="text"
+                 class="mdl-textfield__input"
+                 formControlName="last"
+                 id="last"
+                 name="last"
+                 placeholder={{testDetails.owner.last}}
+                 [(ngModel)]=testDetails.owner.last>
+        </div>
+      </div>
+
+      <!--Details-->
+      <div class="mdl-textfield mdl-js-textfield"><h5>Date</h5></div>
+      <div formGroupName="details" class="mdl-card__title-text">
+        <div class="mdl-textfield mdl-js-textfield">
+          <label class="mdl-textfield__label">Start Date: {{testDetails.details.from}}</label>
+          <input type="text"
+                 class="mdl-textfield__input"
+                 formControlName="from"
+                 id="from"
+                 name="from"
+                 [(ngModel)]=testDetails.details.from>
+        </div>
+        <div class="mdl-textfield mdl-js-textfield">
+          <label class="mdl-textfield__label">End Date: {{testDetails.details.to}}</label>
+          <input type="text"
+                 class="mdl-textfield__input"
+                 formControlName="to"
+                 id="to"
+                 name="to"
+                 [(ngModel)]=testDetails.details.to>
+        </div>
+      </div>
+
+      <!--Description-->
+      <div formGroupName="description">
+        <div class="mdl-textfield mdl-js-textfield"><h5>Description</h5></div>
+        <div class="mdl-card__supporting-text">
+          <label class="mdl-textfield__label">Short</label>
+          <md-textarea type="text"
+                       rows="2" cols="10"
+                       class="mdl-textfield__input"
+                       formControlName="short"
+                       id="short"
+                       name="short"
+                       [(ngModel)]=testDetails.description.short>
+          </md-textarea>
+        </div>
+        <div class="mdl-card__supporting-text">
+          <label class="mdl-textfield__label">Long</label>
+          <md-textarea type="text"
+                       rows="4" cols="10"
+                       class="mdl-textfield__input"
+                       formControlName="long"
+                       id="long"
+                       name="long"
+                       [(ngModel)]=testDetails.description.long>
+          </md-textarea>
+        </div>
+      </div>
+
+      <div class="mdl-card__supporting-text">
+        <div *ngIf="testDetails.snapshots && testDetails.snapshots.length > 0">
+          <div class="mdl-textfield mdl-js-textfield"><h5>Snapshots</h5></div>
+          <div *ngFor="let snap of testDetails.snapshots; let i= index;">
+            <div class="mdl-card__supporting-text">
+              <label class="mdl-textfield__label">Snapshot {{i+1}}</label>
+              <input type="text"
+                     rows="4" cols="10"
+                     class="mdl-textfield__input"
+                     formControlName="snapshots"
+                     name="snapshot-title-{{snap.snapshot_title}}"
+                     [value]="snap.snapshot_title"
+              >
+              <textarea type="text"
+                        rows="4" cols="10"
+                        class="mdl-textfield__input"
+                        formControlName="snapshots"
+                        name="snapshot-desc-{{snap.snapshot_description}}"
+                        [value]="snap.snapshot_description"
+              >
+            </textarea>
+
+              <img class="snapshot-img" src="../../assets/images/sampleimage.jpg" alt="">
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!--Tags-->
+      <div class="mdl-textfield mdl-js-textfield"><h5>Tags</h5></div>
+      <div *ngIf="testDetails.tags && testDetails.tags.length > 0">
+        <div class="mdl-card__supporting-text">
+          <div *ngFor="let tag of testDetails.tags; let i= index;">
+            <label class="mdl-textfield__label">Tag {{i+1}}</label>
+            <input type="text"
+                   class="mdl-textfield__input"
+                   formControlName="tags"
+                   [value]=tag>
+
+          </div>
+        </div>
+      </div>
+      <button type="submit"
+              class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">Save
+      </button>
+    </form>
+  </div>
+</div>

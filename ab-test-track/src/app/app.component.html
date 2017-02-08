@@ -1,0 +1,22 @@
+<div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+  <header class="mdl-layout__header">
+    <div class="mdl-layout__header-row nav-bar">
+      <span class="mdl-layout-title"><a [routerLink]="['/home']">ABTracker</a></span>
+      <nav class="mdl-navigation">
+
+        <app-search (update)="search_term =$event" (optionChange)="select=$event"></app-search>
+
+      </nav>
+    </div>
+  </header>
+
+  <button [routerLink]="['/addtest']" class="add-btn mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect">
+    <i class="material-icons">add</i>
+  </button>
+
+  <main class="mdl-layout__content">
+    <div class="page-content">
+      <router-outlet></router-outlet>
+    </div>
+  </main>
+</div>

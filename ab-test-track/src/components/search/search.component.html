@@ -1,0 +1,21 @@
+<form>
+  <div class="mdl-textfield mdl-js-textfield">
+    <div class="mdl-select mdl-js-select">
+      <select class="mdl-select__input"
+              id="option"
+              name="option"
+              #select
+              (input) = optionChange.emit(select.value)>
+        <option *ngFor="let option of options" [value]="option">{{option}}</option>
+      </select>
+    </div>
+      <i class="mdl-textfield__icon material-icons">search</i>
+      <input id="tf1"
+             type="text"
+             class="mdl-textfield__input mdl-shadow--2dp"
+             #input
+             (input) = "update.emit(input.value)"
+             (keyup)="0" />
+      <label for="tf1" class="mdl-textfield__label">Search</label>
+  </div>
+</form>

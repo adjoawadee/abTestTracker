@@ -1,0 +1,26 @@
+.content-grid{
+  width: 80%;
+  margin-top: 20px;
+}
+
+#active{
+  margin:50px 0;
+}
+
+.activeTrue{
+  color: green;
+}
+.activeFalse{
+  color: red;
+}
+
+.snapshots{
+  .card-image{
+    width: 256px;
+    height: 256px;
+    background: url('../../assets/images/sampleimage.jpg') center / cover;
+    display: inline-block;
+    margin: 15px;
+  }
+}
+
